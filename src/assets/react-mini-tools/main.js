@@ -1,7 +1,7 @@
 const StringUtilities = {
 
 	toUpperCase: (input) => {
-		return input.trim().replace(' ', '_').toUpperCase();
+		return input.trim().replace(' ', '_').replace(' ', '_').replace(' ', '_').toUpperCase();
 	},
 
 	toLowerCamelCase: (input) => {
@@ -102,6 +102,7 @@ yield fork(watch${StringUtilities.toUpperCamelCase(input)});
 
 	generateAllCode: function(inputValue) {
 		if (inputValue) {
+			inputValue = inputValue.trim().toLowerCase();
 			this.codeBlocks = {
 				constants: CodeGenerator.generateConstantsCode(inputValue),
 				actions: CodeGenerator.generateActionsCode(inputValue),
