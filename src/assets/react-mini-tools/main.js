@@ -1,7 +1,7 @@
 const StringUtilities = {
 
 	toUpperCase: (input) => {
-		return input.trim().replace(' ', '_').replace(' ', '_').replace(' ', '_').toUpperCase();
+		return input.trim().replace(/\s/g, '_').toUpperCase();
 	},
 
 	toLowerCamelCase: (input) => {
