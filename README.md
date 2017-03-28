@@ -1,2 +1,5 @@
 # react-mini-tools
-Simple webpage to generate redux and react code
+
+- **Description**: Simple webpage to generate redux and react code
+- **Tech Stack:** vuejs, mdl, gulp
+- **URL:** http://diegofrayo.com/react-mini-tools

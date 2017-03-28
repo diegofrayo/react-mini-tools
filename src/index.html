@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="googlebot" content="noindex"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>React Tools</title>
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-blue.min.css" />
+	<link rel="stylesheet" href="/assets/react-mini-tools/styles.css">
+	<link rel="icon" href="/assets/react-mini-tools/favicon.png"/>
+</head>
+<body>
+	<div id="app">
+		<div class="mdl-shadow--2dp form-container">
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="text" id="main-input" v-model="inputValue" v-on:keyup.13="generateCode(inputValue)">
+				<label class="mdl-textfield__label" for="main-input">Type an action name</label>
+			</div>
+			<button class="mdl-button mdl-js-button mdl-button--primary" v-on:click="generateCode(inputValue)">
+				Generate Code
+			</button>
+		</div>
+		<div v-for="(codeBlock, key) in codeBlocks" class="demo-card-wide mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">
+					{{key}}
+				</h2>
+			</div>
+			<div class="mdl-card__supporting-text">
+				<div v-bind:id="'code-block-' + key" class="code"></div>
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored btn-copy" v-bind:data-clipboard-target="'#pre-code-' + key">
+					Copy
+				</button>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.1/clipboard.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+	<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
+	<script src="/assets/react-mini-tools/main.js"></script>
+</body>
+</html>
