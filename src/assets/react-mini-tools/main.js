@@ -37,30 +37,49 @@ export const ${StringUtilities.toUpperCase(input) + '_FAILURE'} = '${StringUtili
 	generateActionsCode: (input) => {
 		return `
 <pre class="prettyprint" id="pre-code-actions">
+// redux
+import {
+	${StringUtilities.toUpperCase(input) + '_REQUEST'}
+} from 'constants/';
+
 export function ${StringUtilities.toLowerCamelCase(input)}() {
 	return {
 		type: ${StringUtilities.toUpperCase(input) + '_REQUEST'}
 	};
 }
 
+import {
+	${StringUtilities.toLowerCamelCase(input)} as ${StringUtilities.toLowerCamelCase(input) + 'Action'}
+} from 'actions/';
 const dispatch = this.props.dispatch;
-dispatch(${StringUtilities.toLowerCamelCase(input)}());
+dispatch(${StringUtilities.toLowerCamelCase(input) + 'Action'}());
 </pre>`;
 	},
 
 	generateReducersCode: (input) => {
 		return `
 <pre class="prettyprint" id="pre-code-reducers">
-[${StringUtilities.toUpperCase(input) + ''}](state, action) {
+// redux
+import {
+	${StringUtilities.toUpperCase(input) + ''},
+	${StringUtilities.toUpperCase(input) + '_REQUEST'},
+	${StringUtilities.toUpperCase(input) + '_SUCCESS'},
+	${StringUtilities.toUpperCase(input) + '_FAILURE'}
+} from 'constants/index';
+
+case ${StringUtilities.toUpperCase(input) + ''}:
 	return {...state};
 },
-[${StringUtilities.toUpperCase(input) + '_REQUEST'}](state, action) {
+
+case ${StringUtilities.toUpperCase(input) + '_REQUEST'}:
 	return {...state};
 },
-[${StringUtilities.toUpperCase(input) + '_SUCCESS'}](state, action) {
+
+case ${StringUtilities.toUpperCase(input) + '_SUCCESS'}:
 	return {...state};
 },
-[${StringUtilities.toUpperCase(input) + '_FAILURE'}](state, action) {
+
+case ${StringUtilities.toUpperCase(input) + '_FAILURE'}:
 	return {...state};
 }
 </pre>`;
