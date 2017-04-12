@@ -28,9 +28,9 @@ const CodeGenerator = {
 		return `
 <pre class="prettyprint" id="pre-code-constants">
 export const ${StringUtilities.toUpperCase(input)} = '${StringUtilities.toUpperCase(input)}';
-export const ${StringUtilities.toUpperCase(input) + '_REQUEST'} = '${StringUtilities.toUpperCase(input) + '_REQUEST'}';
-export const ${StringUtilities.toUpperCase(input) + '_SUCCESS'} = '${StringUtilities.toUpperCase(input) + '_SUCCESS'}';
-export const ${StringUtilities.toUpperCase(input) + '_FAILURE'} = '${StringUtilities.toUpperCase(input) + '_FAILURE'}';
+export const ${StringUtilities.toUpperCase(input)}_REQUEST = '${StringUtilities.toUpperCase(input)}_REQUEST';
+export const ${StringUtilities.toUpperCase(input)}_SUCCESS = '${StringUtilities.toUpperCase(input)}_SUCCESS';
+export const ${StringUtilities.toUpperCase(input)}_FAILURE = '${StringUtilities.toUpperCase(input)}_FAILURE';
 </pre>`;
 	},
 
@@ -39,20 +39,23 @@ export const ${StringUtilities.toUpperCase(input) + '_FAILURE'} = '${StringUtili
 <pre class="prettyprint" id="pre-code-actions">
 // redux
 import {
-	${StringUtilities.toUpperCase(input) + '_REQUEST'}
+	${StringUtilities.toUpperCase(input)}_REQUEST
 } from 'constants/';
 
 export function ${StringUtilities.toLowerCamelCase(input)}() {
 	return {
-		type: ${StringUtilities.toUpperCase(input) + '_REQUEST'}
+		type: ${StringUtilities.toUpperCase(input)}_REQUEST
 	};
 }
 
+// redux
 import {
-	${StringUtilities.toLowerCamelCase(input)} as ${StringUtilities.toLowerCamelCase(input) + 'Action'}
+	${StringUtilities.toLowerCamelCase(input)} as ${StringUtilities.toLowerCamelCase(input)}Action
 } from 'actions/';
+
 const dispatch = this.props.dispatch;
-dispatch(${StringUtilities.toLowerCamelCase(input) + 'Action'}());
+
+dispatch(${StringUtilities.toLowerCamelCase(input)}Action());
 </pre>`;
 	},
 
@@ -61,25 +64,25 @@ dispatch(${StringUtilities.toLowerCamelCase(input) + 'Action'}());
 <pre class="prettyprint" id="pre-code-reducers">
 // redux
 import {
-	${StringUtilities.toUpperCase(input) + ''},
-	${StringUtilities.toUpperCase(input) + '_REQUEST'},
-	${StringUtilities.toUpperCase(input) + '_SUCCESS'},
-	${StringUtilities.toUpperCase(input) + '_FAILURE'}
+	${StringUtilities.toUpperCase(input)},
+	${StringUtilities.toUpperCase(input)}_REQUEST,
+	${StringUtilities.toUpperCase(input)}_SUCCESS,
+	${StringUtilities.toUpperCase(input)}_FAILURE
 } from 'constants/index';
 
-case ${StringUtilities.toUpperCase(input) + ''}:
+case ${StringUtilities.toUpperCase(input)}:
 	return {...state};
 },
 
-case ${StringUtilities.toUpperCase(input) + '_REQUEST'}:
+case ${StringUtilities.toUpperCase(input)}_REQUEST:
 	return {...state};
 },
 
-case ${StringUtilities.toUpperCase(input) + '_SUCCESS'}:
+case ${StringUtilities.toUpperCase(input)}_SUCCESS:
 	return {...state};
 },
 
-case ${StringUtilities.toUpperCase(input) + '_FAILURE'}:
+case ${StringUtilities.toUpperCase(input)}_FAILURE:
 	return {...state};
 }
 </pre>`;
@@ -88,31 +91,29 @@ case ${StringUtilities.toUpperCase(input) + '_FAILURE'}:
 	generateSagasCode: (input) => {
 		return `
 <pre class="prettyprint" id="pre-code-sagas">
-export function* ${StringUtilities.toLowerCamelCase(input) + 'Saga'}() {
+// redux
+import {
+	${StringUtilities.toLowerCamelCase(input)}Failure as ${StringUtilities.toLowerCamelCase(input)}FailureAction,
+	${StringUtilities.toLowerCamelCase(input)}Success as ${StringUtilities.toLowerCamelCase(input)}SuccessAction
+} from 'actions/';
+import {
+	${StringUtilities.toUpperCase(input)}_REQUEST
+} from 'constants/';
+
+export function* ${StringUtilities.toLowerCamelCase(input)}Saga() {
 
 	try{
 
-		yield put({
-			type: ${StringUtilities.toUpperCase(input) + '_SUCCESS'},
-			payload: ''
-		});
-
-		yield put({
-			type: ${StringUtilities.toUpperCase(input) + '_FAILURE'},
-			payload: ''
-		});
+		yield put(${StringUtilities.toLowerCamelCase(input)}SuccessAction());
 
 	} catch (err) {
-		yield put({
-			type: ${StringUtilities.toUpperCase(input) + '_FAILURE'},
-			payload: ''
-		});
+		yield put(${StringUtilities.toLowerCamelCase(input)}FailureAction());
 	}
 
 };
 
 function* watch${StringUtilities.toUpperCamelCase(input)}() {
-	yield * takeEvery(${StringUtilities.toUpperCase(input) + '_REQUEST'}, ${StringUtilities.toLowerCamelCase(input) + 'Saga'});
+	yield * takeEvery(${StringUtilities.toUpperCase(input)}_REQUEST, ${StringUtilities.toLowerCamelCase(input)}Saga);
 }
 
 yield fork(watch${StringUtilities.toUpperCamelCase(input)});
