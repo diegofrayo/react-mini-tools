@@ -153,3 +153,5 @@ var app = new Vue({
 });
 
 new Clipboard('.btn-copy');
+
+// test
