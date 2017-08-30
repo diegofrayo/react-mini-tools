@@ -28,9 +28,9 @@ const CodeGenerator = {
 		return `
 <pre class="prettyprint" id="pre-code-constants">
 export const ${StringUtilities.toUpperCase(input)} = '${StringUtilities.toUpperCase(input)}';
+export const ${StringUtilities.toUpperCase(input)}_FAILURE = '${StringUtilities.toUpperCase(input)}_FAILURE';
 export const ${StringUtilities.toUpperCase(input)}_REQUEST = '${StringUtilities.toUpperCase(input)}_REQUEST';
 export const ${StringUtilities.toUpperCase(input)}_SUCCESS = '${StringUtilities.toUpperCase(input)}_SUCCESS';
-export const ${StringUtilities.toUpperCase(input)}_FAILURE = '${StringUtilities.toUpperCase(input)}_FAILURE';
 </pre>`;
 	},
 
@@ -39,23 +39,52 @@ export const ${StringUtilities.toUpperCase(input)}_FAILURE = '${StringUtilities.
 <pre class="prettyprint" id="pre-code-actions">
 // redux
 import {
-	${StringUtilities.toUpperCase(input)}_REQUEST
-} from 'constants/';
+	${StringUtilities.toUpperCase(input)},
+	${StringUtilities.toUpperCase(input)}_FAILURE,
+	${StringUtilities.toUpperCase(input)}_REQUEST,
+	${StringUtilities.toUpperCase(input)}_SUCCESS,
+} from 'constants';
 
 export function ${StringUtilities.toLowerCamelCase(input)}() {
 	return {
-		type: ${StringUtilities.toUpperCase(input)}_REQUEST
+		type: ${StringUtilities.toUpperCase(input)},
+	};
+}
+
+export function ${StringUtilities.toLowerCamelCase(input)}Request() {
+	return {
+		type: ${StringUtilities.toUpperCase(input)}_REQUEST,
+	};
+}
+
+export function ${StringUtilities.toLowerCamelCase(input)}Success() {
+	return {
+		type: ${StringUtilities.toUpperCase(input)}_SUCCESS,
+	};
+}
+
+export function ${StringUtilities.toLowerCamelCase(input)}Failure() {
+	return {
+		type: ${StringUtilities.toUpperCase(input)}_FAILURE,
 	};
 }
 
 // redux
 import {
-	${StringUtilities.toLowerCamelCase(input)} as ${StringUtilities.toLowerCamelCase(input)}Action
-} from 'actions/';
+  ${StringUtilities.toLowerCamelCase(input)} as ${StringUtilities.toLowerCamelCase(input)}Action,
+  ${StringUtilities.toLowerCamelCase(input)}Failure as ${StringUtilities.toLowerCamelCase(input)}FailureAction,
+  ${StringUtilities.toLowerCamelCase(input)}Request as ${StringUtilities.toLowerCamelCase(input)}RequestAction,
+  ${StringUtilities.toLowerCamelCase(input)}Success as ${StringUtilities.toLowerCamelCase(input)}SuccessAction,
+} from 'actions';
 
-const dispatch = this.props.dispatch;
-
-dispatch(${StringUtilities.toLowerCamelCase(input)}Action());
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    ${StringUtilities.toLowerCamelCase(input)}: () => dispatch(${StringUtilities.toLowerCamelCase(input)}Action()),
+    ${StringUtilities.toLowerCamelCase(input)}Failure: () => dispatch(${StringUtilities.toLowerCamelCase(input)}FailureAction()),
+    ${StringUtilities.toLowerCamelCase(input)}Request: () => dispatch(${StringUtilities.toLowerCamelCase(input)}RequestAction()),
+    ${StringUtilities.toLowerCamelCase(input)}Success: () => dispatch(${StringUtilities.toLowerCamelCase(input)}SuccessAction()),
+  },
+});
 </pre>`;
 	},
 
@@ -65,26 +94,22 @@ dispatch(${StringUtilities.toLowerCamelCase(input)}Action());
 // redux
 import {
 	${StringUtilities.toUpperCase(input)},
+	${StringUtilities.toUpperCase(input)}_FAILURE,
 	${StringUtilities.toUpperCase(input)}_REQUEST,
 	${StringUtilities.toUpperCase(input)}_SUCCESS,
-	${StringUtilities.toUpperCase(input)}_FAILURE
-} from 'constants/index';
+} from 'constants';
 
 case ${StringUtilities.toUpperCase(input)}:
-	return {...state};
-},
-
-case ${StringUtilities.toUpperCase(input)}_REQUEST:
-	return {...state};
-},
-
-case ${StringUtilities.toUpperCase(input)}_SUCCESS:
-	return {...state};
-},
+	return state;
 
 case ${StringUtilities.toUpperCase(input)}_FAILURE:
-	return {...state};
-}
+	return state;
+
+case ${StringUtilities.toUpperCase(input)}_REQUEST:
+	return state;
+
+case ${StringUtilities.toUpperCase(input)}_SUCCESS:
+	return state;
 </pre>`;
 	},
 
@@ -94,23 +119,19 @@ case ${StringUtilities.toUpperCase(input)}_FAILURE:
 // redux
 import {
 	${StringUtilities.toLowerCamelCase(input)}Failure as ${StringUtilities.toLowerCamelCase(input)}FailureAction,
-	${StringUtilities.toLowerCamelCase(input)}Success as ${StringUtilities.toLowerCamelCase(input)}SuccessAction
-} from 'actions/';
+	${StringUtilities.toLowerCamelCase(input)}Success as ${StringUtilities.toLowerCamelCase(input)}SuccessAction,
+} from 'actions';
 import {
-	${StringUtilities.toUpperCase(input)}_REQUEST
-} from 'constants/';
+	${StringUtilities.toUpperCase(input)}_REQUEST,
+} from 'constants';
 
 export function* ${StringUtilities.toLowerCamelCase(input)}Saga() {
-
 	try{
-
 		yield put(${StringUtilities.toLowerCamelCase(input)}SuccessAction());
-
 	} catch (err) {
 		yield put(${StringUtilities.toLowerCamelCase(input)}FailureAction());
 	}
-
-};
+}
 
 function* watch${StringUtilities.toUpperCamelCase(input)}() {
 	yield * takeEvery(${StringUtilities.toUpperCase(input)}_REQUEST, ${StringUtilities.toLowerCamelCase(input)}Saga);
