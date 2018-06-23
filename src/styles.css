@@ -1,56 +1,57 @@
-body{
+body {
   background-color: #ededed;
 }
 
-div{
+div {
   box-sizing: border-box;
 }
 
-h2{
+h2 {
   cursor: default;
 }
 
-#app{
+#app {
   margin: 0 auto;
   max-width: 800px;
   padding: 10px;
 }
 
-.form-container{
+.form-container {
   background-color: #e8e8e8;
   padding: 10px;
   text-align: center;
 }
 
-.mdl-textfield__input{
+.mdl-textfield__input {
   color: black;
 }
 
-.mdl-card, .form-container{
+.mdl-card,
+.form-container {
   margin: 10px auto;
 }
 
-.mdl-card{
+.mdl-card {
   width: 100%;
 }
 
-.mdl-card__supporting-text{
+.mdl-card__supporting-text {
   margin: 0 auto;
   padding-top: 0;
   width: 100%;
 }
 
-.code{
+.code {
   display: block;
   margin-bottom: 10px;
 }
 
-.prettyprint{
+.prettyprint {
   cursor: default;
   overflow: auto;
   padding: 10px;
 }
 
-.mdl-button--raised{
+.mdl-button--raised {
   float: right;
 }
