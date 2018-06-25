@@ -9,7 +9,7 @@
     "gulp",
     "vuejs"
   ],
-  "react-mini-tools": "https://github.com/diegofrayo/react-mini-tools#readme",
+  "homepage": "https://github.com/diegofrayo/react-mini-tools#readme",
   "bugs": {
     "email": "diegofrayo@gmail.com",
     "url": "https://github.com/diegofrayo/react-mini-tools/issues"
